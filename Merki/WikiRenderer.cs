@@ -1,6 +1,6 @@
 ﻿using Textile;
 
-namespace Markup
+namespace Merki
 {
     public class WikiRenderer
     {
