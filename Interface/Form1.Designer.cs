@@ -36,6 +36,7 @@
             this.split = new System.Windows.Forms.SplitContainer();
             this.editBox = new System.Windows.Forms.GroupBox();
             this.previewBox = new System.Windows.Forms.GroupBox();
+            this.previewBrowser = new System.Windows.Forms.WebBrowser();
             this.menu.SuspendLayout();
             this.searchResultsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.split)).BeginInit();
@@ -43,6 +44,7 @@
             this.split.Panel2.SuspendLayout();
             this.split.SuspendLayout();
             this.editBox.SuspendLayout();
+            this.previewBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -75,27 +77,24 @@
             // 
             // searchResults
             // 
-            this.searchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.searchResults.FullRowSelect = true;
-            this.searchResults.Location = new System.Drawing.Point(7, 20);
+            this.searchResults.Location = new System.Drawing.Point(3, 16);
             this.searchResults.Name = "searchResults";
-            this.searchResults.Size = new System.Drawing.Size(411, 61);
+            this.searchResults.Size = new System.Drawing.Size(418, 68);
             this.searchResults.TabIndex = 0;
             this.searchResults.UseCompatibleStateImageBehavior = false;
             this.searchResults.View = System.Windows.Forms.View.List;
             // 
             // editor
             // 
-            this.editor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.editor.Location = new System.Drawing.Point(0, 19);
+            this.editor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editor.Location = new System.Drawing.Point(3, 16);
             this.editor.Multiline = true;
             this.editor.Name = "editor";
             this.editor.Size = new System.Drawing.Size(200, 145);
             this.editor.TabIndex = 0;
+            this.editor.TextChanged += new System.EventHandler(this.UpdatePreview);
             // 
             // split
             // 
@@ -134,12 +133,27 @@
             this.previewBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.previewBox.Controls.Add(this.previewBrowser);
             this.previewBox.Location = new System.Drawing.Point(3, 4);
             this.previewBox.Name = "previewBox";
             this.previewBox.Size = new System.Drawing.Size(202, 164);
             this.previewBox.TabIndex = 0;
             this.previewBox.TabStop = false;
             this.previewBox.Text = "Preview";
+            // 
+            // previewBrowser
+            // 
+            this.previewBrowser.AllowWebBrowserDrop = false;
+            this.previewBrowser.CausesValidation = false;
+            this.previewBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.previewBrowser.IsWebBrowserContextMenuEnabled = false;
+            this.previewBrowser.Location = new System.Drawing.Point(3, 16);
+            this.previewBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.previewBrowser.Name = "previewBrowser";
+            this.previewBrowser.ScriptErrorsSuppressed = true;
+            this.previewBrowser.Size = new System.Drawing.Size(196, 145);
+            this.previewBrowser.TabIndex = 0;
+            this.previewBrowser.WebBrowserShortcutsEnabled = false;
             // 
             // MainForm
             // 
@@ -151,7 +165,8 @@
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.Text = "Merki";
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.searchResultsBox.ResumeLayout(false);
@@ -161,6 +176,7 @@
             this.split.ResumeLayout(false);
             this.editBox.ResumeLayout(false);
             this.editBox.PerformLayout();
+            this.previewBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,6 +192,7 @@
         private System.Windows.Forms.SplitContainer split;
         private System.Windows.Forms.GroupBox editBox;
         private System.Windows.Forms.GroupBox previewBox;
+        private System.Windows.Forms.WebBrowser previewBrowser;
     }
 }
 
