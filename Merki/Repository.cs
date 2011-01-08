@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System;
-using System.Diagnostics;
 
 namespace Merki
 {
