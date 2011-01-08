@@ -29,7 +29,28 @@ namespace Merki
             Exec("clone {0} {1}", url, Root);
         }
 
-        int Exec(string commandFormat, params string[] args)
+        public void Commit()
+        {
+            Exec("commit -m automatic");
+        }
+
+        public void Push()
+        {
+            Exec("push");
+        }
+
+        public void Pull()
+        {
+            Exec("pull");
+        }
+
+        public void Update()
+        {
+            // TODO: Detect conflicts
+            Exec("update");
+        }
+
+        int Exec(string commandFormat, params object[] args)
         {
             var cmd = String.Format(commandFormat, args);
 
@@ -45,6 +66,21 @@ namespace Merki
             var p = Process.Start(pi);
             p.WaitForExit();
             return p.ExitCode;
+        }
+
+        public string LoadFromFile(string filename)
+        {
+            var file = Path.Combine(Root, filename);
+            var fullpath = new FileInfo(file).FullName;
+            var result = File.ReadAllText(fullpath);
+            return result;
+        }
+
+        public void WriteToFile(string filename, string content)
+        {
+            var file = Path.Combine(Root, filename);
+            var fullpath = new FileInfo(file).FullName;
+            File.WriteAllText(fullpath, content);
         }
     }
 }

@@ -94,7 +94,7 @@
             this.editor.Name = "editor";
             this.editor.Size = new System.Drawing.Size(200, 145);
             this.editor.TabIndex = 0;
-            this.editor.TextChanged += new System.EventHandler(this.UpdatePreview);
+            this.editor.TextChanged += new System.EventHandler(this.EditorChanged);
             // 
             // split
             // 
