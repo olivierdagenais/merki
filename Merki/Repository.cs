@@ -7,12 +7,10 @@ namespace Merki
     public class Repository
     {
         string Root { get; set; }
-        string UserName { get; set; }
 
-        public Repository(string rootDirectory, string username)
+        public Repository(string rootDirectory)
         {
             Root = rootDirectory;
-            UserName = username;
         }
 
         public bool Initialized
@@ -28,12 +26,12 @@ namespace Merki
         public void Clone(string url)
         {
             if (Initialized) throw new Exception("Already Initialized!");
-            Exec("clone {0} {1}", url, Root);
+            Exec(new FileInfo(Root).Directory, "clone {0} {1}", url, Root);
         }
 
         public void Commit()
         {
-            Exec("commit -m automatic -u \"{0}\"", UserName);
+            Exec("commit -m automatic");
         }
 
         public void Push()
@@ -54,23 +52,22 @@ namespace Merki
 
         int Exec(string commandFormat, params object[] args)
         {
+            var result = Exec(new DirectoryInfo(Root), commandFormat, args);
+            return result;
+        }
+
+        int Exec(DirectoryInfo workingDirectory, string commandFormat, params object[] args)
+        {
             var cmd = String.Format(commandFormat, args);
 
-            var pi = new ProcessStartInfo(@"c:\Program Files\TortoiseHg\hg.exe", cmd);
+            var pi = new ProcessStartInfo("hg", cmd);
             pi.CreateNoWindow = true;
-            pi.RedirectStandardError = true;
-            pi.RedirectStandardInput = false;
-            pi.RedirectStandardOutput = true;
             pi.UseShellExecute = false;
-            pi.LoadUserProfile = true;
             pi.WindowStyle = ProcessWindowStyle.Hidden;
-            pi.WorkingDirectory = new FileInfo(Root).DirectoryName;
+            pi.WorkingDirectory = workingDirectory.FullName;
 
             var p = Process.Start(pi);
             p.WaitForExit();
-
-            var outputText = p.StandardOutput.ReadToEnd();
-            var outputError = p.StandardError.ReadToEnd();
 
             return p.ExitCode;
         }

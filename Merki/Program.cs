@@ -17,11 +17,9 @@ namespace Merki
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var repo = new Repository("repo", "Eric Nadeau <nado18@gmail.com>");
-            repo.Commit();
-
-            //if (RepositoryValid(repo))
-            //    Application.Run(new MainForm(repo));
+            var repo = new Repository("repo");
+            if (RepositoryValid(repo))
+                Application.Run(new MainForm(repo));
         }
 
         static bool RepositoryValid(Repository repo)
