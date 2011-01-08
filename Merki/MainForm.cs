@@ -12,6 +12,7 @@ namespace Merki
         Repository Repository { get; set; }
         WikiRenderer wikiRenderer = new WikiRenderer();
         Timer timer = new Timer(250);
+        bool loading = false;
 
         public MainForm(Repository repository)
         {
@@ -33,14 +34,19 @@ namespace Merki
 
         private void EditorChanged(object sender, EventArgs e)
         {
-            timer.Stop();
-            timer.Start();
+            if (!loading)
+            {
+                timer.Stop();
+                timer.Start();
+            }
         }
 
         private void LoadDocument(string filename)
         {
+            loading = true;
             Document = filename;
             editor.Text = Repository.LoadFromFile(filename);
+            loading = false;
         }
 
         private void SaveDocument()

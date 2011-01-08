@@ -58,10 +58,10 @@ namespace Merki
 
             var pi = new ProcessStartInfo("hg", cmd);
             pi.CreateNoWindow = true;
-            pi.RedirectStandardError = false;
+            pi.RedirectStandardError = true;
             pi.RedirectStandardInput = false;
-            pi.RedirectStandardOutput = false;
-            pi.UseShellExecute = true;
+            pi.RedirectStandardOutput = true;
+            pi.UseShellExecute = false;
             pi.WindowStyle = ProcessWindowStyle.Hidden;
             pi.WorkingDirectory = new FileInfo(Root).DirectoryName;
 
