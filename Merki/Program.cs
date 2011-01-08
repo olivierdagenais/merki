@@ -16,28 +16,27 @@ namespace Merki
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (RepositoryValid)
-                Application.Run(new MainForm());
+
+            var repo = new Repository("repo");
+
+            if (RepositoryValid(repo))
+                Application.Run(new MainForm(repo));
         }
 
-        static bool RepositoryValid
+        static bool RepositoryValid(Repository repo)
         {
-            get
+            var repositoryConfiguration = new RepositoryConfiguration();
+
+            while (!repo.Initialized)
             {
-                var repoPath = "repo/.hg";
-                var repositoryConfiguration = new RepositoryConfiguration();
+                var result = repositoryConfiguration.ShowDialog();
+                if (result != DialogResult.OK)
+                    return false;
 
-                while (!Directory.Exists(repoPath))
-                {
-                    var result = repositoryConfiguration.ShowDialog();
-                    if (result != DialogResult.OK)
-                        return false;
-
-                    var url = repositoryConfiguration.RepositoryUrl;
-                    // TODO: Clone repository
-                }
-                return true;
+                var url = repositoryConfiguration.RepositoryUrl;
+                repo.Clone(url);
             }
+            return true;
         }
     }
 }

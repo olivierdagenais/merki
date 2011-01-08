@@ -12,10 +12,12 @@ namespace Merki
 {
     public partial class MainForm : Form
     {
+        Repository Repository { get; set; }
         WikiRenderer wikiRenderer = new WikiRenderer();
 
-        public MainForm()
+        public MainForm(Repository repository)
         {
+            Repository = repository;
             InitializeComponent();
         }
 
