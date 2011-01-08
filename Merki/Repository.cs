@@ -67,6 +67,9 @@ namespace Merki
 
             var p = Process.Start(pi);
             p.WaitForExit();
+
+            var outputText = p.StandardOutput.ReadToEnd();
+
             return p.ExitCode;
         }
 
