@@ -7,10 +7,12 @@ namespace Merki
     public class Repository
     {
         string Root { get; set; }
+        string UserName { get; set; }
 
-        public Repository(string rootDirectory)
+        public Repository(string rootDirectory, string username)
         {
             Root = rootDirectory;
+            UserName = username;
         }
 
         public bool Initialized
@@ -31,7 +33,7 @@ namespace Merki
 
         public void Commit()
         {
-            Exec("commit -m automatic");
+            Exec("commit -m automatic -u \"{0}\"", UserName);
         }
 
         public void Push()
@@ -60,7 +62,6 @@ namespace Merki
             pi.RedirectStandardInput = false;
             pi.RedirectStandardOutput = false;
             pi.UseShellExecute = false;
-            //pi.UserName = System.Environment.UserName;
             pi.WindowStyle = ProcessWindowStyle.Hidden;
             pi.WorkingDirectory = new FileInfo(Root).DirectoryName;
 
