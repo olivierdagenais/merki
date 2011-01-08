@@ -61,6 +61,7 @@ namespace Merki
         private void SaveDocument()
         {
             Repository.WriteToFile(Document, editor.Text);
+            Repository.Add();
             Repository.Commit();
             Repository.Push();
             Repository.Pull();

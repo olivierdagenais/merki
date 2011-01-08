@@ -29,6 +29,11 @@ namespace Merki
             Exec(new FileInfo(Root).Directory, "clone {0} {1}", url, Root);
         }
 
+        public void Add()
+        {
+            Exec("add .");
+        }
+
         public void Commit()
         {
             Exec("commit -m automatic");
