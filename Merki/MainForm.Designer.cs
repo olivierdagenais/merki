@@ -1,4 +1,4 @@
-﻿namespace Interface
+﻿namespace Merki
 {
     partial class MainForm
     {
