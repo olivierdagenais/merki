@@ -26,10 +26,15 @@ namespace Merki
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            UpdatePreview();
+            SaveDocument();
+        }
+
+        private void UpdatePreview()
+        {
             var wikiText = editor.Text;
             var renderedText = wikiRenderer.Render(wikiText);
             previewBrowser.DocumentText = renderedText;
-            SaveDocument();
         }
 
         private void EditorChanged(object sender, EventArgs e)
@@ -38,6 +43,10 @@ namespace Merki
             {
                 timer.Stop();
                 timer.Start();
+            }
+            else
+            {
+                UpdatePreview();
             }
         }
 
