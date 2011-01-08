@@ -61,7 +61,7 @@ namespace Merki
             pi.RedirectStandardError = false;
             pi.RedirectStandardInput = false;
             pi.RedirectStandardOutput = false;
-            pi.UseShellExecute = false;
+            pi.UseShellExecute = true;
             pi.WindowStyle = ProcessWindowStyle.Hidden;
             pi.WorkingDirectory = new FileInfo(Root).DirectoryName;
 
