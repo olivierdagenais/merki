@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Markup;
 
-namespace Interface
+namespace Merki
 {
     public partial class MainForm : Form
     {
