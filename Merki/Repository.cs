@@ -57,7 +57,7 @@ namespace Merki
             var cmd = String.Format(commandFormat, args);
 
             var pi = new ProcessStartInfo("hg", cmd);
-            pi.CreateNoWindow = true;
+            pi.CreateNoWindow = false;
             pi.RedirectStandardError = true;
             pi.RedirectStandardInput = false;
             pi.RedirectStandardOutput = true;
