@@ -58,9 +58,9 @@ namespace Merki
 
             var pi = new ProcessStartInfo("hg", cmd);
             pi.CreateNoWindow = true;
-            pi.RedirectStandardError = false;
+            pi.RedirectStandardError = true;
             pi.RedirectStandardInput = false;
-            pi.RedirectStandardOutput = false;
+            pi.RedirectStandardOutput = true;
             pi.UseShellExecute = false;
             pi.WindowStyle = ProcessWindowStyle.Hidden;
             pi.WorkingDirectory = new FileInfo(Root).DirectoryName;
@@ -69,6 +69,7 @@ namespace Merki
             p.WaitForExit();
 
             var outputText = p.StandardOutput.ReadToEnd();
+            var outputError = p.StandardError.ReadToEnd();
 
             return p.ExitCode;
         }
