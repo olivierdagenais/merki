@@ -179,6 +179,7 @@
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Merki";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.searchBox.ResumeLayout(false);
