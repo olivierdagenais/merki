@@ -9,6 +9,7 @@ namespace Merki
         public string Text { get; set; }
         public FileInfo DiskFile { get; set; }
         Dictionary<string, string> meta = new Dictionary<string, string>();
+        static Regex metaRegex = new Regex(@"^([^:]+):(.*)$", RegexOptions.Compiled);
 
         public Page(FileInfo wikiFile)
         {
@@ -18,24 +19,28 @@ namespace Merki
 
         public void Reload()
         {
-            var metaRegex = new Regex(@"^([^:]+):(.*)$", RegexOptions.Compiled);
+            Text = string.Empty;
+            meta.Clear();
 
-            var pageText = File.ReadAllText(DiskFile.FullName);
-            using (var sr = new StringReader(pageText))
+            if (DiskFile.Exists)
             {
-                for (;;)
+                var pageText = File.ReadAllText(DiskFile.FullName);
+                using (var sr = new StringReader(pageText))
                 {
-                    var line = sr.ReadLine();
-                    var match = metaRegex.Match(line);
-                    if (!match.Success) break;
+                    for (; ; )
+                    {
+                        var line = sr.ReadLine();
+                        var match = metaRegex.Match(line);
+                        if (!match.Success) break;
 
-                    var key = match.Groups[1].Value.Trim();
-                    var value = match.Groups[2].Value.Trim();
-                    this[key] = value;
+                        var key = match.Groups[1].Value.Trim();
+                        var value = match.Groups[2].Value.Trim();
+                        this[key] = value;
+                    }
+                    // the empty line gets skipped
+
+                    Text = sr.ReadToEnd();
                 }
-                // the empty line gets skipped
-
-                Text = sr.ReadToEnd();
             }
         }
 
