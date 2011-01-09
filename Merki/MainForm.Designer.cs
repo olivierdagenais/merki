@@ -34,19 +34,19 @@
             this.search = new System.Windows.Forms.ListView();
             this.editor = new System.Windows.Forms.TextBox();
             this.split = new System.Windows.Forms.SplitContainer();
+            this.leftPane = new System.Windows.Forms.Panel();
             this.editBox = new System.Windows.Forms.GroupBox();
             this.previewBox = new System.Windows.Forms.GroupBox();
             this.previewBrowser = new System.Windows.Forms.WebBrowser();
-            this.leftPane = new System.Windows.Forms.Panel();
             this.menu.SuspendLayout();
             this.searchBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.split)).BeginInit();
             this.split.Panel1.SuspendLayout();
             this.split.Panel2.SuspendLayout();
             this.split.SuspendLayout();
+            this.leftPane.SuspendLayout();
             this.editBox.SuspendLayout();
             this.previewBox.SuspendLayout();
-            this.leftPane.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -68,11 +68,12 @@
             // 
             // searchBox
             // 
-            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBox.Controls.Add(this.search);
-            this.searchBox.Location = new System.Drawing.Point(52, 181);
+            this.searchBox.Location = new System.Drawing.Point(6, 140);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(200, 83);
+            this.searchBox.Size = new System.Drawing.Size(258, 139);
             this.searchBox.TabIndex = 2;
             this.searchBox.TabStop = false;
             this.searchBox.Text = "Search";
@@ -83,7 +84,7 @@
             this.search.FullRowSelect = true;
             this.search.Location = new System.Drawing.Point(3, 16);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(194, 64);
+            this.search.Size = new System.Drawing.Size(252, 120);
             this.search.TabIndex = 0;
             this.search.UseCompatibleStateImageBehavior = false;
             this.search.View = System.Windows.Forms.View.List;
@@ -94,16 +95,14 @@
             this.editor.Location = new System.Drawing.Point(3, 16);
             this.editor.Multiline = true;
             this.editor.Name = "editor";
-            this.editor.Size = new System.Drawing.Size(200, 53);
+            this.editor.Size = new System.Drawing.Size(255, 96);
             this.editor.TabIndex = 0;
             this.editor.TextChanged += new System.EventHandler(this.EditorChanged);
             // 
             // split
             // 
-            this.split.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.split.Location = new System.Drawing.Point(12, 28);
+            this.split.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.split.Location = new System.Drawing.Point(0, 25);
             this.split.Name = "split";
             // 
             // split.Panel1
@@ -113,16 +112,28 @@
             // split.Panel2
             // 
             this.split.Panel2.Controls.Add(this.previewBox);
-            this.split.Size = new System.Drawing.Size(516, 270);
-            this.split.SplitterDistance = 258;
+            this.split.Size = new System.Drawing.Size(540, 285);
+            this.split.SplitterDistance = 270;
             this.split.TabIndex = 3;
+            // 
+            // leftPane
+            // 
+            this.leftPane.Controls.Add(this.editBox);
+            this.leftPane.Controls.Add(this.searchBox);
+            this.leftPane.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leftPane.Location = new System.Drawing.Point(0, 0);
+            this.leftPane.Name = "leftPane";
+            this.leftPane.Size = new System.Drawing.Size(270, 285);
+            this.leftPane.TabIndex = 1;
             // 
             // editBox
             // 
+            this.editBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.editBox.Controls.Add(this.editor);
             this.editBox.Location = new System.Drawing.Point(3, 4);
             this.editBox.Name = "editBox";
-            this.editBox.Size = new System.Drawing.Size(206, 72);
+            this.editBox.Size = new System.Drawing.Size(261, 115);
             this.editBox.TabIndex = 0;
             this.editBox.TabStop = false;
             this.editBox.Text = "Edit";
@@ -135,7 +146,7 @@
             this.previewBox.Controls.Add(this.previewBrowser);
             this.previewBox.Location = new System.Drawing.Point(3, 4);
             this.previewBox.Name = "previewBox";
-            this.previewBox.Size = new System.Drawing.Size(248, 261);
+            this.previewBox.Size = new System.Drawing.Size(260, 276);
             this.previewBox.TabIndex = 0;
             this.previewBox.TabStop = false;
             this.previewBox.Text = "Preview";
@@ -150,19 +161,9 @@
             this.previewBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.previewBrowser.Name = "previewBrowser";
             this.previewBrowser.ScriptErrorsSuppressed = true;
-            this.previewBrowser.Size = new System.Drawing.Size(242, 242);
+            this.previewBrowser.Size = new System.Drawing.Size(254, 257);
             this.previewBrowser.TabIndex = 0;
             this.previewBrowser.WebBrowserShortcutsEnabled = false;
-            // 
-            // leftPane
-            // 
-            this.leftPane.Controls.Add(this.editBox);
-            this.leftPane.Controls.Add(this.searchBox);
-            this.leftPane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.leftPane.Location = new System.Drawing.Point(0, 0);
-            this.leftPane.Name = "leftPane";
-            this.leftPane.Size = new System.Drawing.Size(258, 270);
-            this.leftPane.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -182,10 +183,10 @@
             this.split.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.split)).EndInit();
             this.split.ResumeLayout(false);
+            this.leftPane.ResumeLayout(false);
             this.editBox.ResumeLayout(false);
             this.editBox.PerformLayout();
             this.previewBox.ResumeLayout(false);
-            this.leftPane.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
