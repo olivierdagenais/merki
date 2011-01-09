@@ -17,6 +17,15 @@ namespace Merki
             Reload();
         }
 
+        public bool IsNew
+        {
+            get
+            {
+                var result = ! DiskFile.Exists;
+                return result;
+            }
+        }
+
         public void Reload()
         {
             Text = string.Empty;

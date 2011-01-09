@@ -19,7 +19,13 @@ namespace Merki
         {
             Repository = repository;
             InitializeComponent();
-            LoadDocument( Repository["home.wiki"] );
+
+            var username = System.Environment.UserName;
+            var homePage = new Page( Repository[username + ".wiki"] );
+            if (homePage.IsNew)
+                homePage["Title"] = username + "'s Home Page";
+
+            LoadDocument( homePage );
             SearchFilterChanged();
 
             timer.AutoReset = false;
