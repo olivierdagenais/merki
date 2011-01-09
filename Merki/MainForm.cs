@@ -3,6 +3,7 @@ using System.IO;
 using System;
 
 using Timer = System.Timers.Timer;
+using System.Collections.Generic;
 
 namespace Merki
 {
@@ -92,6 +93,15 @@ namespace Merki
                 editBox.Visible = false;
                 searchBox.Visible = true;
                 searchBox.Dock = DockStyle.Fill;
+
+                var pages = Page.Search(Repository.Directory, searchText.Text);
+                var lvic = search.Items;
+                lvic.Clear();
+                foreach (var page in pages)
+                {
+                    var lvi = new ListViewItem(page["Title"]);
+                    lvic.Add(lvi);
+                }
             }
         }
 
