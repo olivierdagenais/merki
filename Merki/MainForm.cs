@@ -67,6 +67,8 @@ namespace Merki
             var fileInfo = Repository[filename];
             ActivePage = new Page(fileInfo);
             editor.Text = ActivePage.Text;
+            searchText.Clear();
+            editor.Focus();
 
             loading = false;
         }
