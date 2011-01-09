@@ -102,8 +102,8 @@
             this.search.TabIndex = 0;
             this.search.UseCompatibleStateImageBehavior = false;
             this.search.View = System.Windows.Forms.View.Details;
+            this.search.ItemActivate += new System.EventHandler(this.SearchResultActivated);
             this.search.SelectedIndexChanged += new System.EventHandler(this.SearchResultSelected);
-            this.search.DoubleClick += new System.EventHandler(this.SearchResultSelectedForEdit);
             this.search.Resize += new System.EventHandler(this.ResizeSearchBox);
             // 
             // editor

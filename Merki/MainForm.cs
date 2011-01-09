@@ -142,15 +142,6 @@ namespace Merki
             }
         }
 
-        private void SearchResultSelectedForEdit(object sender, EventArgs e)
-        {
-            if (search.SelectedItems.Count > 0)
-            {
-                var page = (Page)search.SelectedItems[0].Tag;
-                LoadDocument(page);
-            }
-        }
-
         private void newPageMenuItem_Click(object sender, EventArgs e)
         {
             var newPageDialog = new NewPageForm();
@@ -167,6 +158,16 @@ namespace Merki
         private void ResizeSearchBox(object sender, EventArgs e)
         {
             pageTitleColumnHeader.Width = search.Width - search.Margin.Horizontal;
+        }
+
+        private void SearchResultActivated(object sender, EventArgs e)
+        {
+            if (search.SelectedItems.Count > 0)
+            {
+                var page = (Page)search.SelectedItems[0].Tag;
+                LoadDocument(page);
+            }
+
         }
     }
 }
