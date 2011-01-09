@@ -38,6 +38,7 @@
             this.editBox = new System.Windows.Forms.GroupBox();
             this.previewBox = new System.Windows.Forms.GroupBox();
             this.previewBrowser = new System.Windows.Forms.WebBrowser();
+            this.newPageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.searchBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.split)).BeginInit();
@@ -52,6 +53,7 @@
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newPageMenuItem,
             this.searchText});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
@@ -168,6 +170,13 @@
             this.previewBrowser.TabIndex = 0;
             this.previewBrowser.WebBrowserShortcutsEnabled = false;
             // 
+            // newPageMenuItem
+            // 
+            this.newPageMenuItem.Name = "newPageMenuItem";
+            this.newPageMenuItem.Size = new System.Drawing.Size(67, 21);
+            this.newPageMenuItem.Text = "&New Page";
+            this.newPageMenuItem.Click += new System.EventHandler(this.newPageMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,6 +217,7 @@
         private System.Windows.Forms.GroupBox previewBox;
         private System.Windows.Forms.WebBrowser previewBrowser;
         private System.Windows.Forms.Panel leftPane;
+        private System.Windows.Forms.ToolStripMenuItem newPageMenuItem;
     }
 }
 

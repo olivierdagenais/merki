@@ -145,5 +145,10 @@ namespace Merki
                 LoadDocument(page);
             }
         }
+
+        private void newPageMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
