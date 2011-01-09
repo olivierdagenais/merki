@@ -7,6 +7,17 @@ namespace Merki
     public class Repository
     {
         string Root { get; set; }
+        public DirectoryInfo Directory { get { return new DirectoryInfo(Root); } }
+
+        public FileInfo this[string name]
+        {
+            get
+            {
+                var relativeFile = Path.Combine(Root, name);
+                var result = new FileInfo(relativeFile);
+                return result;
+            }
+        }
 
         public Repository(string rootDirectory)
         {
@@ -18,7 +29,7 @@ namespace Merki
             get
             {
                 var path = Path.Combine(Root, ".hg");
-                var result = Directory.Exists(path);
+                var result = System.IO.Directory.Exists(path);
                 return result;
             }
         }
@@ -75,21 +86,6 @@ namespace Merki
             p.WaitForExit();
 
             return p.ExitCode;
-        }
-
-        public string LoadFromFile(string filename)
-        {
-            var file = Path.Combine(Root, filename);
-            var fullpath = new FileInfo(file).FullName;
-            var result = File.ReadAllText(fullpath);
-            return result;
-        }
-
-        public void WriteToFile(string filename, string content)
-        {
-            var file = Path.Combine(Root, filename);
-            var fullpath = new FileInfo(file).FullName;
-            File.WriteAllText(fullpath, content);
         }
     }
 }

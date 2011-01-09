@@ -8,7 +8,7 @@ namespace Merki
 {
     public partial class MainForm : Form
     {
-        string Document { get; set; }
+        Page ActivePage { get; set; }
         Repository Repository { get; set; }
         WikiRenderer wikiRenderer = new WikiRenderer();
         Timer timer = new Timer(250);
@@ -53,14 +53,23 @@ namespace Merki
         private void LoadDocument(string filename)
         {
             loading = true;
-            Document = filename;
-            editor.Text = Repository.LoadFromFile(filename);
+            SaveDocument();
+
+            var fileInfo = Repository[filename];
+            ActivePage = new Page(fileInfo);
+            editor.Text = ActivePage.Text;
+
             loading = false;
         }
 
         private void SaveDocument()
         {
-            Repository.WriteToFile(Document, editor.Text);
+            if (ActivePage != null)
+            {
+                ActivePage.Text = editor.Text;
+                ActivePage.Save();
+            }
+
             Repository.Add();
             Repository.Commit();
             Repository.Push();
