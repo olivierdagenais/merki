@@ -148,7 +148,15 @@ namespace Merki
 
         private void newPageMenuItem_Click(object sender, EventArgs e)
         {
-
+            var newPageDialog = new NewPageForm();
+            var result = newPageDialog.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                var name = Guid.NewGuid() + ".wiki";
+                var page = new Page( Repository[name] );
+                page["Title"] = newPageDialog.PageTitle;
+                LoadDocument(page);
+            }
         }
     }
 }
