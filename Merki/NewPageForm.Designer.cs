@@ -37,10 +37,10 @@
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.okButton.Location = new System.Drawing.Point(45, 46);
+            this.okButton.Location = new System.Drawing.Point(45, 32);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 0;
+            this.okButton.TabIndex = 2;
             this.okButton.Text = "&Ok";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
@@ -49,10 +49,10 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(315, 46);
+            this.cancelButton.Location = new System.Drawing.Point(315, 32);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 1;
+            this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -62,7 +62,7 @@
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 100;
             this.label1.Text = "Title";
             // 
             // pageTitle
@@ -72,7 +72,8 @@
             this.pageTitle.Location = new System.Drawing.Point(45, 6);
             this.pageTitle.Name = "pageTitle";
             this.pageTitle.Size = new System.Drawing.Size(345, 20);
-            this.pageTitle.TabIndex = 3;
+            this.pageTitle.TabIndex = 1;
+            this.pageTitle.TextChanged += new System.EventHandler(this.pageTitleChanged);
             // 
             // NewPageForm
             // 
@@ -80,13 +81,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(402, 75);
+            this.ClientSize = new System.Drawing.Size(402, 61);
             this.Controls.Add(this.pageTitle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.MinimumSize = new System.Drawing.Size(221, 92);
             this.Name = "NewPageForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "New Page";
             this.ResumeLayout(false);
             this.PerformLayout();
