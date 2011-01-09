@@ -19,6 +19,7 @@ namespace Merki
             Repository = repository;
             InitializeComponent();
             LoadDocument("home.wiki");
+            SearchFilterChanged();
 
             timer.AutoReset = false;
             timer.Elapsed += timer_Elapsed;
@@ -76,6 +77,27 @@ namespace Merki
             Repository.Pull();
             // TODO: Check time stamp on active document
             Repository.Update();
+        }
+
+        private void SearchFilterChanged()
+        {
+            if (searchText.Text.Length == 0)
+            {
+                searchBox.Visible = false;
+                editBox.Visible = true;
+                editBox.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                editBox.Visible = false;
+                searchBox.Visible = true;
+                searchBox.Dock = DockStyle.Fill;
+            }
+        }
+
+        private void SearchFilterChanged(object sender, EventArgs e)
+        {
+            SearchFilterChanged();
         }
     }
 }
