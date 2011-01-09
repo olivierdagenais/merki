@@ -109,5 +109,15 @@ namespace Merki
         {
             SearchFilterChanged();
         }
+
+        private void SearchResultSelected(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchResultSelectedForEdit(object sender, EventArgs e)
+        {
+
+        }
     }
 }

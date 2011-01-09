@@ -83,11 +83,14 @@
             this.search.Dock = System.Windows.Forms.DockStyle.Fill;
             this.search.FullRowSelect = true;
             this.search.Location = new System.Drawing.Point(3, 16);
+            this.search.MultiSelect = false;
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(252, 120);
             this.search.TabIndex = 0;
             this.search.UseCompatibleStateImageBehavior = false;
             this.search.View = System.Windows.Forms.View.List;
+            this.search.SelectedIndexChanged += new System.EventHandler(this.SearchResultSelected);
+            this.search.DoubleClick += new System.EventHandler(this.SearchResultSelectedForEdit);
             // 
             // editor
             // 
