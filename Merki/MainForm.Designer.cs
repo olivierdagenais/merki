@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.menu = new System.Windows.Forms.MenuStrip();
+            this.newPageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchText = new System.Windows.Forms.ToolStripTextBox();
             this.searchBox = new System.Windows.Forms.GroupBox();
             this.search = new System.Windows.Forms.ListView();
@@ -38,7 +39,7 @@
             this.editBox = new System.Windows.Forms.GroupBox();
             this.previewBox = new System.Windows.Forms.GroupBox();
             this.previewBrowser = new System.Windows.Forms.WebBrowser();
-            this.newPageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pageTitleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menu.SuspendLayout();
             this.searchBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.split)).BeginInit();
@@ -62,6 +63,13 @@
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
+            // newPageMenuItem
+            // 
+            this.newPageMenuItem.Name = "newPageMenuItem";
+            this.newPageMenuItem.Size = new System.Drawing.Size(67, 21);
+            this.newPageMenuItem.Text = "&New Page";
+            this.newPageMenuItem.Click += new System.EventHandler(this.newPageMenuItem_Click);
+            // 
             // searchText
             // 
             this.searchText.Name = "searchText";
@@ -82,17 +90,21 @@
             // 
             // search
             // 
+            this.search.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.pageTitleColumnHeader});
             this.search.Dock = System.Windows.Forms.DockStyle.Fill;
             this.search.FullRowSelect = true;
+            this.search.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.search.Location = new System.Drawing.Point(3, 16);
             this.search.MultiSelect = false;
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(252, 120);
             this.search.TabIndex = 0;
             this.search.UseCompatibleStateImageBehavior = false;
-            this.search.View = System.Windows.Forms.View.List;
+            this.search.View = System.Windows.Forms.View.Details;
             this.search.SelectedIndexChanged += new System.EventHandler(this.SearchResultSelected);
             this.search.DoubleClick += new System.EventHandler(this.SearchResultSelectedForEdit);
+            this.search.Resize += new System.EventHandler(this.ResizeSearchBox);
             // 
             // editor
             // 
@@ -170,12 +182,9 @@
             this.previewBrowser.TabIndex = 0;
             this.previewBrowser.WebBrowserShortcutsEnabled = false;
             // 
-            // newPageMenuItem
+            // pageTitleColumnHeader
             // 
-            this.newPageMenuItem.Name = "newPageMenuItem";
-            this.newPageMenuItem.Size = new System.Drawing.Size(67, 21);
-            this.newPageMenuItem.Text = "&New Page";
-            this.newPageMenuItem.Click += new System.EventHandler(this.newPageMenuItem_Click);
+            this.pageTitleColumnHeader.Text = "Title";
             // 
             // MainForm
             // 
@@ -218,6 +227,7 @@
         private System.Windows.Forms.WebBrowser previewBrowser;
         private System.Windows.Forms.Panel leftPane;
         private System.Windows.Forms.ToolStripMenuItem newPageMenuItem;
+        private System.Windows.Forms.ColumnHeader pageTitleColumnHeader;
     }
 }
 

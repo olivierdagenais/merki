@@ -164,5 +164,10 @@ namespace Merki
                 LoadDocument(page);
             }
         }
+
+        private void ResizeSearchBox(object sender, EventArgs e)
+        {
+            pageTitleColumnHeader.Width = search.Width - search.Margin.Horizontal;
+        }
     }
 }
