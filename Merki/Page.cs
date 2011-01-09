@@ -13,10 +13,10 @@ namespace Merki
         public Page(FileInfo wikiFile)
         {
             DiskFile = wikiFile;
-            Load();
+            Reload();
         }
 
-        void Load()
+        public void Reload()
         {
             var metaRegex = new Regex(@"^([^:]+):(.*)$", RegexOptions.Compiled);
 
@@ -39,7 +39,7 @@ namespace Merki
             }
         }
 
-        void Save()
+        public void Save()
         {
             using (var sw = new StringWriter())
             {
