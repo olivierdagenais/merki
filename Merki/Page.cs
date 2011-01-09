@@ -29,8 +29,8 @@ namespace Merki
                     var match = metaRegex.Match(line);
                     if (!match.Success) break;
 
-                    var key = match.Groups[0].Value.Trim();
-                    var value = match.Groups[1].Value.Trim();
+                    var key = match.Groups[1].Value.Trim();
+                    var value = match.Groups[2].Value.Trim();
                     this[key] = value;
                 }
                 // the empty line gets skipped
