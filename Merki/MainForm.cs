@@ -76,11 +76,10 @@ namespace Merki
             editor.Focus();
 
             loading = false;
-        }
 
-        private void LoadDocument(FileInfo fileInfo)
-        {
-            LoadDocument(new Page(fileInfo));
+            Text = ActivePage == null
+                ? string.Empty
+                : string.Format("{0} - Merki", ActivePage["Title"]);
         }
 
         private void SaveDocument()
