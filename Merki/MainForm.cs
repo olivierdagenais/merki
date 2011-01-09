@@ -28,15 +28,22 @@ namespace Merki
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            UpdatePreview();
+            UpdatePreview(ActivePage);
             SaveDocument();
         }
 
-        private void UpdatePreview()
+        private void UpdatePreview(Page page)
         {
-            var wikiText = editor.Text;
-            var renderedText = wikiRenderer.Render(wikiText);
-            previewBrowser.DocumentText = renderedText;
+            if (page != null)
+            {
+                var wikiText = page.Text;
+                var renderedText = wikiRenderer.Render(wikiText);
+                previewBrowser.DocumentText = renderedText;
+            }
+            else
+            {
+                previewBrowser.DocumentText = string.Empty;
+            }
         }
 
         private void EditorChanged(object sender, EventArgs e)
@@ -48,7 +55,7 @@ namespace Merki
             }
             else
             {
-                UpdatePreview();
+                UpdatePreview(ActivePage);
             }
         }
 
@@ -100,6 +107,7 @@ namespace Merki
                 foreach (var page in pages)
                 {
                     var lvi = new ListViewItem(page["Title"]);
+                    lvi.Tag = page;
                     lvic.Add(lvi);
                 }
             }
@@ -112,7 +120,15 @@ namespace Merki
 
         private void SearchResultSelected(object sender, EventArgs e)
         {
-
+            if (search.SelectedItems.Count == 0)
+            {
+                UpdatePreview(null);
+            }
+            else
+            {
+                var page = (Page)search.SelectedItems[0].Tag;
+                UpdatePreview(page);
+            }
         }
 
         private void SearchResultSelectedForEdit(object sender, EventArgs e)
