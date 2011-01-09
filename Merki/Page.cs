@@ -7,7 +7,7 @@ namespace Merki
     public class Page
     {
         public string Text { get; set; }
-        FileInfo DiskFile { get; set; }
+        public FileInfo DiskFile { get; set; }
         Dictionary<string, string> meta = new Dictionary<string, string>();
 
         public Page(FileInfo wikiFile)

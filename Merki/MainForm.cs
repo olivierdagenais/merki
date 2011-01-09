@@ -19,7 +19,7 @@ namespace Merki
         {
             Repository = repository;
             InitializeComponent();
-            LoadDocument("home.wiki");
+            LoadDocument( Repository["home.wiki"] );
             SearchFilterChanged();
 
             timer.AutoReset = false;
@@ -59,18 +59,22 @@ namespace Merki
             }
         }
 
-        private void LoadDocument(string filename)
+        private void LoadDocument(Page page)
         {
             loading = true;
             SaveDocument();
 
-            var fileInfo = Repository[filename];
-            ActivePage = new Page(fileInfo);
+            ActivePage = page;
             editor.Text = ActivePage.Text;
             searchText.Clear();
             editor.Focus();
 
             loading = false;
+        }
+
+        private void LoadDocument(FileInfo fileInfo)
+        {
+            LoadDocument(new Page(fileInfo));
         }
 
         private void SaveDocument()
@@ -135,7 +139,11 @@ namespace Merki
 
         private void SearchResultSelectedForEdit(object sender, EventArgs e)
         {
-
+            if (search.SelectedItems.Count > 0)
+            {
+                var page = (Page)search.SelectedItems[0].Tag;
+                LoadDocument(page);
+            }
         }
     }
 }
